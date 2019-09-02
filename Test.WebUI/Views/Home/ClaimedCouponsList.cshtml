@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Test.Domain.Entities.CouponClaimPrize>
+
+@{
+    ViewBag.Title = "ClaimedCouponsList";
+    Layout = "~/Views/Shared/_MobileLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        @using (Html.BeginForm("ClaimedCouponsList", "Home", FormMethod.Get))
+        {
+            <div class="form-row">                
+                @Html.Editor("searching", new { htmlAttributes = new { @class = "form-control", @type = "text", @style = "width:50% !important; min-width:200px !important", placeholder = "Coupon Number" } })
+                <button class="btn btn-info" type="submit" value="Search"><i class="fas fa-search"></i></button>                
+            </div>
+        }
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CouponNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PrizeName)
+                </th>
+            </tr>
+            @if (Model.Count() == 0)
+            {
+                <tr><td colspan="4" class="text-center">No Coupons Found</td></tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CouponNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrizeName)
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>

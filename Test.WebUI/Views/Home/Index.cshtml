@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Test.Domain.Entities.Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MobileLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <div class="form-row">
+                @Html.Editor("searching", new { htmlAttributes = new { @class = "form-control", @type = "text", @style = "width:50% !important; min-width:200px !important", placeholder = "Phone Number" } })
+                <button class="btn btn-info" type="submit" value="Search"><i class="fas fa-search"></i></button>
+            </div>
+        }
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th></th>
+                <th>@Html.ActionLink("Create New", "CreateCustomer", null, new { @class = "btn btn-success" })</th>
+            </tr>
+            @if (Model.Count() == 0)
+            {
+                <tr><td colspan="4" class="text-center">No Match Found</td></tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditCustomer", new { id = item.CustomerID }, new { @class = "btn btn-primary" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Add Coupon", "NewCouponRegister", new { id = item.CustomerID }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+                }
+            }
+
+        </table>
+    </div>
+</div>

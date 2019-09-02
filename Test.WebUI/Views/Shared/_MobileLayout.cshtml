@@ -1,0 +1,70 @@
+﻿@*@{
+    Layout = null;
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+    <link href="~/Content/TableStyles.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-dark bg-dark d-flex justify-content-between " role="navigation">
+            <button class="btn navbar-brand pull-left" style="background-color:transparent" type="button" aria-haspopup="true" aria-expanded="false" onclick="location.href='#'">
+                 Test 
+            </button>            
+            <div class=" text-center d-sm-block d-md-none">
+                <div class="dropdown">
+                    <button class="btn navbar-btn" style="background-color:transparent" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bars fa-2x" style="color:whitesmoke" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <p class="d-flex justify-content-center">@Html.ActionLink("Customers", "Index", null, new { @class = "btn btn-default btn-lg" })</p>
+                        <p class="dropdown-divider"></p>
+                        <p class="d-flex justify-content-center">@Html.ActionLink("Transactions", "TransactionList", null, new { @class = "btn btn-default btn-lg" })</p>
+                        <p class="dropdown-divider"></p>
+                        <p class="d-flex justify-content-center">@Html.ActionLink("Coupons", "ClaimedCouponsList", null, new { @class = "btn btn-default btn-lg" })</p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn navbar-brand pull-right" style="background-color:transparent" type="button" aria-haspopup="true" aria-expanded="false" onclick="location.href='@Url.Action("Index", "Login")'">
+                Log Out
+            </button>
+        </nav>
+    </div>
+    <div>
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+    </div>
+    <div class="container">  
+        <div class="row">
+            <div class="col-xs d-none d-sm-none d-md-block">
+                <p></p>
+                <p class="d-flex justify-content-center">@Html.ActionLink("Customers", "Index", null, new { @class = "btn btn-outline-secondary btn-default btn-lg btn-block" })</p>
+                <p></p>
+                <p class="d-flex justify-content-center">@Html.ActionLink("Transactions", "TransactionList", null, new { @class = "btn btn-outline-secondary btn-default btn-lg btn-block" })</p>
+                <p></p>
+                <p class="d-flex justify-content-center">@Html.ActionLink("Coupons", "ClaimedCouponsList", null, new { @class = "btn btn-outline-secondary btn-default btn-lg btn-block" })</p>
+            </div>
+            <div class="col-md-9 d-block justify-content-center">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>

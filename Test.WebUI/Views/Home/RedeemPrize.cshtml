@@ -1,0 +1,89 @@
+﻿@model Test.WebUI.Models.FormViewModel
+
+@{
+    ViewBag.Title = "RedeemPrize";
+    Layout = "~/Views/Shared/_MobileLayout.cshtml";
+}
+
+@using (Html.BeginForm("RedeemPrize", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.GetContactViewModel.ContactID)
+    @Html.HiddenFor(model => model.GetCustomerViewModel.CustomerID)
+    @Html.HiddenFor(model => model.GetPrizeViewModel.PrizeID)
+    @Html.HiddenFor(model => model.GetTransactionViewModel.TransactionID)
+    @Html.HiddenFor(model => model.GetTransactionViewModel.CustomerID)
+    @Html.HiddenFor(model => model.GetTransactionViewModel.PrizeRecieved)
+    @Html.HiddenFor(model => model.GetTransactionViewModel.PrizeID)
+    @Html.HiddenFor(model => model.GetCustomerViewModel.PhoneNumber)
+    @Html.HiddenFor(model => model.GetContactViewModel.FirstName)
+    @Html.HiddenFor(model => model.GetContactViewModel.LastName)
+    @Html.HiddenFor(model => model.GetTransactionViewModel.CouponNumber)
+    @Html.HiddenFor(model => model.GetTransactionViewModel.TransactionNumber)
+    @Html.HiddenFor(model => model.GetTransactionViewModel.TransactionDate)
+    @Html.HiddenFor(model => model.GetContactViewModel.PostCode)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetCustomerViewModel.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+        @Html.DisplayTextFor(model => model.GetCustomerViewModel.PhoneNumber)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetContactViewModel.FirstName, htmlAttributes: new { @class = "control-label col-md-4" })
+        @Html.DisplayFor(model => model.GetContactViewModel.FirstName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetContactViewModel.LastName, htmlAttributes: new { @class = "control-label col-md-4" })
+        @Html.DisplayTextFor(model => model.GetContactViewModel.LastName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetContactViewModel.PostCode, htmlAttributes: new { @class = "control-label col-md-4" })
+        @Html.DisplayTextFor(model => model.GetContactViewModel.PostCode)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetContactViewModel.Email, htmlAttributes: new { @class = "control-label col-md-4" })
+        @Html.DisplayTextFor(model => model.GetContactViewModel.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetTransactionViewModel.CouponNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+        @Html.DisplayTextFor(model => model.GetTransactionViewModel.CouponNumber)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetPrizeViewModel.PrizeName, htmlAttributes: new { @class = "control-label col-md-4" })
+        @Html.DisplayTextFor(model => model.GetPrizeViewModel.PrizeName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetTransactionViewModel.TransactionValue, htmlAttributes: new { @class = "control-label col-md-4" })
+        @Html.DisplayTextFor(model => model.GetTransactionViewModel.TransactionValue)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetTransactionViewModel.TransactionNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+        @Html.DisplayTextFor(model => model.GetTransactionViewModel.TransactionNumber)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.GetTransactionViewModel.TransactionDate, htmlAttributes: new { @class = "control-label col-md-4" })
+        @Model.GetTransactionViewModel.TransactionDate.ToShortDateString()
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Back to List", "TransactionList", null, new { @class = "btn btn-success btn-lg" })
+            <input type="submit" value="Confirm" class="btn btn-default btn-lg" onclick="return confirm('Are you sure?\n You won\'t be able to change asigned transaction anymore')" />
+        </div>
+    </div>
+</div>
+}
+
+<div class="col-md-offset-2 col-md-10">
+    
+    
+</div>
+
+
